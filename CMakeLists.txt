@@ -3,4 +3,4 @@ project(lab4)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(lab4 main.cpp chess.h)
+add_executable(lab4 main.cpp chess.h pieces.cpp game_history.cpp game_descriptor.cpp)
