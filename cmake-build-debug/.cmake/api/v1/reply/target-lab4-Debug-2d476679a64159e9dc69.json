@@ -55,7 +55,10 @@
 				0,
 				2,
 				3,
-				4
+				4,
+				5,
+				6,
+				7
 			]
 		}
 	],
@@ -91,7 +94,10 @@
 				0,
 				2,
 				3,
-				4
+				4,
+				5,
+				6,
+				7
 			]
 		},
 		{
@@ -118,7 +124,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "pieces.cpp",
+			"path" : "queen.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -131,6 +137,24 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "game_descriptor.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "king.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "rook.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "bishop.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

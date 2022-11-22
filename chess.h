@@ -3,6 +3,7 @@
 #include <vector>
 #include <array>
 #include <memory>
+#include <algorithm>
 
 namespace CHESS{
 
@@ -30,15 +31,19 @@ namespace CHESS{
     };
 
     class Piece{
+    protected:
+        std::pair<int, int> position;
+        const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& board;
     private:
         COLOR color;
     public:
-        explicit Piece(COLOR color);
-        virtual bool checkMove(std::pair<int, int> square) = 0;
+        explicit Piece(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        bool checkMove(std::pair<int, int> square);
         virtual std::string getShortName() = 0;
         virtual std::vector<std::pair<int, int>> getAvailableMoves() = 0;
         virtual std::string getName() = 0;
-        virtual std::string toNotation(std::pair<int, int> square) = 0;
+        virtual std::string toNotation(std::pair<int, int> square) = 0;//realization
+        COLOR get_color();
     };
 
     class Game_History{
@@ -56,10 +61,10 @@ namespace CHESS{
         COLOR turn = white;
         STATUS status = NoGame;
         VERDICT verdict = Nothing;
-    public:
-        void makeMove(std::pair<int, int> square0, std::pair<int, int> square);
         void addPiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece);
         void deletePiece(std::pair<int, int> square);
+    public:
+        void makeMove(std::pair<int, int> square0, std::pair<int, int> square);
         void changePiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece);
         void CheckOrCheckmate();
         void CheckDeadPosition();
@@ -67,14 +72,34 @@ namespace CHESS{
     };
 
     class King: public Piece{
-    private:
-        COLOR color;
     public:
-        explicit King(COLOR color);
-        bool checkMove(std::pair<int, int> square) override;
+        explicit King(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
         std::string getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
         std::string getName() override;
-        std::string toNotation(std::pair<int, int> square) override;
+    };
+
+    class Queen: public Piece{
+    public:
+        explicit Queen(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        std::string getShortName() override;
+        std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::string getName() override;
+    };
+
+    class Rook: public Piece{
+    public:
+        explicit Rook(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        std::string getShortName() override;
+        std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::string getName() override;
+    };
+
+    class Bishop: public Piece{
+    public:
+        explicit Bishop(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        std::string getShortName() override;
+        std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::string getName() override;
     };
 }
