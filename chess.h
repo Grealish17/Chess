@@ -42,7 +42,7 @@ namespace CHESS{
         virtual std::string getShortName() = 0;
         virtual std::vector<std::pair<int, int>> getAvailableMoves() = 0;
         virtual std::string getName() = 0;
-        virtual std::string toNotation(std::pair<int, int> square) = 0;//realization
+        //virtual std::string toNotation(std::pair<int, int> square) = 0;//realization
         COLOR get_color();
     };
 
@@ -64,9 +64,12 @@ namespace CHESS{
         void addPiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece);
         void deletePiece(std::pair<int, int> square);
     public:
+        explicit Game_Descriptor();
+        explicit Game_Descriptor(std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board, COLOR turn, STATUS status, VERDICT verdict);
         void makeMove(std::pair<int, int> square0, std::pair<int, int> square);
         void changePiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece);
-        void CheckOrCheckmate();
+        bool CheckCheckmate(COLOR color);
+        bool CheckCheck(COLOR color);
         void CheckDeadPosition();
         void CheckThreefoldRepetition();
     };
@@ -98,6 +101,22 @@ namespace CHESS{
     class Bishop: public Piece{
     public:
         explicit Bishop(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        std::string getShortName() override;
+        std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::string getName() override;
+    };
+
+    class Knight: public Piece{
+    public:
+        explicit Knight(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        std::string getShortName() override;
+        std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::string getName() override;
+    };
+
+    class Pawn: public Piece{
+    public:
+        explicit Pawn(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
         std::string getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
         std::string getName() override;

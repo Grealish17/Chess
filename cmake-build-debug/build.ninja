@@ -91,6 +91,18 @@ build CMakeFiles/lab4.dir/bishop.cpp.o: CXX_COMPILER__lab4_Debug /home/alexandr/
   OBJECT_DIR = CMakeFiles/lab4.dir
   OBJECT_FILE_DIR = CMakeFiles/lab4.dir
 
+build CMakeFiles/lab4.dir/knight.cpp.o: CXX_COMPILER__lab4_Debug /home/alexandr/CLionProjects/OOP2022/lab4/knight.cpp || cmake_object_order_depends_target_lab4
+  DEP_FILE = CMakeFiles/lab4.dir/knight.cpp.o.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles/lab4.dir
+  OBJECT_FILE_DIR = CMakeFiles/lab4.dir
+
+build CMakeFiles/lab4.dir/pawn.cpp.o: CXX_COMPILER__lab4_Debug /home/alexandr/CLionProjects/OOP2022/lab4/pawn.cpp || cmake_object_order_depends_target_lab4
+  DEP_FILE = CMakeFiles/lab4.dir/pawn.cpp.o.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles/lab4.dir
+  OBJECT_FILE_DIR = CMakeFiles/lab4.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lab4
@@ -99,7 +111,7 @@ build CMakeFiles/lab4.dir/bishop.cpp.o: CXX_COMPILER__lab4_Debug /home/alexandr/
 #############################################
 # Link the executable lab4
 
-build lab4: CXX_EXECUTABLE_LINKER__lab4_Debug CMakeFiles/lab4.dir/main.cpp.o CMakeFiles/lab4.dir/queen.cpp.o CMakeFiles/lab4.dir/game_history.cpp.o CMakeFiles/lab4.dir/game_descriptor.cpp.o CMakeFiles/lab4.dir/king.cpp.o CMakeFiles/lab4.dir/rook.cpp.o CMakeFiles/lab4.dir/bishop.cpp.o
+build lab4: CXX_EXECUTABLE_LINKER__lab4_Debug CMakeFiles/lab4.dir/main.cpp.o CMakeFiles/lab4.dir/queen.cpp.o CMakeFiles/lab4.dir/game_history.cpp.o CMakeFiles/lab4.dir/game_descriptor.cpp.o CMakeFiles/lab4.dir/king.cpp.o CMakeFiles/lab4.dir/rook.cpp.o CMakeFiles/lab4.dir/bishop.cpp.o CMakeFiles/lab4.dir/knight.cpp.o CMakeFiles/lab4.dir/pawn.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/lab4.dir
   POST_BUILD = :
