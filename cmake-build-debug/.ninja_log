@@ -1,0 +1,11 @@
+# ninja log v5
+9	1537	1669751940190219105	CMakeFiles/lab4.dir/game_descriptor.cpp.o	ff63c0bd7a75974c
+2872	3915	1669751942570251692	CMakeFiles/lab4.dir/knight.cpp.o	59635215e3b47e46
+1113	2871	1669751941520237316	CMakeFiles/lab4.dir/king.cpp.o	d1a60cb8ce53e214
+0	54	1669760120346162765	build.ninja	cec8bf7dac2b5014
+7	1112	1669751939766879975	CMakeFiles/lab4.dir/game_history.cpp.o	cc450c722d2e5441
+1537	3425	1669751942080244984	CMakeFiles/lab4.dir/bishop.cpp.o	1e64838443d0a9c8
+6	1228	1669751939883548239	CMakeFiles/lab4.dir/queen.cpp.o	7411bec24df438a7
+1229	3150	1669751941803574529	CMakeFiles/lab4.dir/rook.cpp.o	bcdf8750dbcd8dc
+3150	4009	1669751942663586304	CMakeFiles/lab4.dir/pawn.cpp.o	5d4a25504aa44938
+0	1440	1669751516854396106	CMakeFiles/lab4.dir/main.cpp.o	59e0e4f5deedfadb
