@@ -60,12 +60,12 @@ namespace CHESS{
         return "Rook";
     }
 
-    std::string Rook::getShortName(){
+    char Rook::getShortName(){
         if(get_color() == white){
-            return "R";
+            return 'R';
         }
         else{
-            return "r";
+            return 'r';
         }
     }
 }

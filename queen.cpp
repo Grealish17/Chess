@@ -123,12 +123,12 @@ namespace CHESS{
         return "Queen";
     }
 
-    std::string Queen::getShortName(){
+    char Queen::getShortName(){
         if(get_color() == white){
-            return "Q";
+            return 'Q';
         }
         else{
-            return "q";
+            return 'q';
         }
     }
 }

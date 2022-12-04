@@ -61,12 +61,12 @@ namespace CHESS{
         return "Bishop";
     }
 
-    std::string Bishop::getShortName(){
+    char Bishop::getShortName(){
         if(get_color() == white){
-            return "B";
+            return 'B';
         }
         else{
-            return "b";
+            return 'b';
         }
     }
 }

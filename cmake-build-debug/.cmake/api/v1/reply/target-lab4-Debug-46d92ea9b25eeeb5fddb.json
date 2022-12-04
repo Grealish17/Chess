@@ -79,7 +79,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-g -fdiagnostics-color=always"
 				},
 				{
 					"fragment" : "-std=gnu++14"
@@ -104,7 +104,8 @@
 				6,
 				7,
 				8,
-				9
+				9,
+				10
 			]
 		}
 	],
@@ -160,7 +161,8 @@
 				6,
 				7,
 				8,
-				9
+				9,
+				10
 			]
 		},
 		{
@@ -230,6 +232,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "pawn.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "piece_texture.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

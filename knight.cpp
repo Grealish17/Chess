@@ -101,12 +101,12 @@ namespace CHESS{
         return "Knight";
     }
 
-    std::string Knight::getShortName(){
+    char Knight::getShortName(){
         if(get_color() == white){
-            return "N";
+            return 'N';
         }
         else{
-            return "n";
+            return 'n';
         }
     }
 }

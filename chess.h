@@ -1,9 +1,14 @@
+#pragma once
 #include <iostream>
 #include <list>
 #include <vector>
 #include <array>
 #include <memory>
 #include <algorithm>
+#include <SFML/Graphics.hpp>
+
+const int FIELD_SIZE = 800;
+const int SQUARE_SIZE = 100;
 
 namespace CHESS{
 
@@ -30,6 +35,8 @@ namespace CHESS{
         Nothing
     };
 
+    //class Game_Descriptor;
+
     class Piece{
     protected:
         std::pair<int, int> position;
@@ -39,9 +46,10 @@ namespace CHESS{
     public:
         explicit Piece(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
         bool checkMove(std::pair<int, int> square);
-        virtual std::string getShortName() = 0;
+        virtual char getShortName() = 0;
         virtual std::vector<std::pair<int, int>> getAvailableMoves() = 0;
         virtual std::string getName() = 0;
+        //friend Game_Descriptor;
         //virtual std::string toNotation(std::pair<int, int> square) = 0;//realization
         COLOR get_color();
     };
@@ -54,13 +62,14 @@ namespace CHESS{
         void readFromFile(std::string file_name);
     };
 
-    class Game_Descriptor{
+    class Game_Descriptor : public sf::Drawable, public sf::Transformable{
     private:
         std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board;
         Game_History history;
         COLOR turn = white;
         STATUS status = NoGame;
         VERDICT verdict = Nothing;
+        sf::Font font;
         void addPiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece);
         void deletePiece(std::pair<int, int> square);
     public:
@@ -72,12 +81,13 @@ namespace CHESS{
         bool CheckCheck(COLOR color);
         void CheckDeadPosition();
         void CheckThreefoldRepetition();
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     };
 
     class King: public Piece{
     public:
         explicit King(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
-        std::string getShortName() override;
+        char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
         std::string getName() override;
     };
@@ -85,7 +95,7 @@ namespace CHESS{
     class Queen: public Piece{
     public:
         explicit Queen(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
-        std::string getShortName() override;
+        char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
         std::string getName() override;
     };
@@ -93,7 +103,7 @@ namespace CHESS{
     class Rook: public Piece{
     public:
         explicit Rook(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
-        std::string getShortName() override;
+        char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
         std::string getName() override;
     };
@@ -101,7 +111,7 @@ namespace CHESS{
     class Bishop: public Piece{
     public:
         explicit Bishop(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
-        std::string getShortName() override;
+        char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
         std::string getName() override;
     };
@@ -109,7 +119,7 @@ namespace CHESS{
     class Knight: public Piece{
     public:
         explicit Knight(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
-        std::string getShortName() override;
+        char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
         std::string getName() override;
     };
@@ -117,8 +127,28 @@ namespace CHESS{
     class Pawn: public Piece{
     public:
         explicit Pawn(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
-        std::string getShortName() override;
+        char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
         std::string getName() override;
     };
+
+    class PieceTextures{
+    public:
+        static sf::Texture blackKing;
+        static sf::Texture blackQueen;
+        static sf::Texture blackRook;
+        static sf::Texture blackKnight;
+        static sf::Texture blackBishop;
+        static sf::Texture blackPawn;
+
+        static sf::Texture whiteKing;
+        static sf::Texture whiteQueen;
+        static sf::Texture whiteRook;
+        static sf::Texture whiteKnight;
+        static sf::Texture whiteBishop;
+        static sf::Texture whitePawn;
+
+        static sf::Texture loadTexture(const std::string& str);
+    };
+
 }

@@ -23,12 +23,12 @@ namespace CHESS{
         return "King";
     }
 
-    std::string King::getShortName(){
+    char King::getShortName(){
         if(get_color() == white){
-            return "K";
+            return 'K';
         }
         else{
-            return "k";
+            return 'k';
         }
     }
 }

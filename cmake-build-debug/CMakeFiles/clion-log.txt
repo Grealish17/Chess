@@ -1,5 +1,0 @@
-/var/lib/snapd/snap/clion/209/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/var/lib/snapd/snap/clion/209/bin/ninja/linux/ninja -G Ninja -S /home/alexandr/CLionProjects/OOP2022/lab4 -B /home/alexandr/CLionProjects/OOP2022/lab4/cmake-build-debug
--- Found SFML 2.5.1 in /usr/lib64/cmake/SFML
--- Configuring done
--- Generating done
--- Build files have been written to: /home/alexandr/CLionProjects/OOP2022/lab4/cmake-build-debug

@@ -39,12 +39,12 @@ namespace CHESS{
         return "Pawn";
     }
 
-    std::string Pawn::getShortName(){
+    char Pawn::getShortName(){
         if(get_color() == white){
-            return "";
+            return 'P';
         }
         else{
-            return "";
+            return 'p';
         }
     }
 }

@@ -2,18 +2,6 @@
 	"entries" : 
 	[
 		{
-			"name" : "/home/alexandr/CLionProjects/OOP2022/lab4/SFML-2.5.1_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for /home/alexandr/CLionProjects/OOP2022/lab4/SFML-2.5.1."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/home/alexandr/CLionProjects/OOP2022/lab4/SFML-2.5.1_DIR-NOTFOUND"
-		},
-		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -91,7 +79,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "23"
+			"value" : "24"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -106,6 +94,18 @@
 			"value" : "2"
 		},
 		{
+			"name" : "CMAKE_COLOR_DIAGNOSTICS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable colored diagnostics throughout."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
+		},
+		{
 			"name" : "CMAKE_COMMAND",
 			"properties" : 
 			[
@@ -115,7 +115,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/var/lib/snapd/snap/clion/209/bin/cmake/linux/bin/cmake"
+			"value" : "/var/lib/snapd/snap/clion/218/bin/cmake/linux/bin/cmake"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/var/lib/snapd/snap/clion/209/bin/cmake/linux/bin/cpack"
+			"value" : "/var/lib/snapd/snap/clion/218/bin/cmake/linux/bin/cpack"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -139,7 +139,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/var/lib/snapd/snap/clion/209/bin/cmake/linux/bin/ctest"
+			"value" : "/var/lib/snapd/snap/clion/218/bin/cmake/linux/bin/ctest"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -414,18 +414,6 @@
 			"value" : "CMAKE_DLLTOOL-NOTFOUND"
 		},
 		{
-			"name" : "CMAKE_EDIT_COMMAND",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to cache edit program executable."
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "/var/lib/snapd/snap/clion/209/bin/cmake/linux/bin/ccmake"
-		},
-		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
 			"properties" : 
 			[
@@ -546,6 +534,18 @@
 			"value" : ""
 		},
 		{
+			"name" : "CMAKE_FIND_PACKAGE_REDIRECTS_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake."
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/alexandr/CLionProjects/OOP2022/lab4/cmake-build-debug/CMakeFiles/pkgRedirects"
+		},
+		{
 			"name" : "CMAKE_GENERATOR",
 			"properties" : 
 			[
@@ -655,7 +655,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "/var/lib/snapd/snap/clion/209/bin/ninja/linux/ninja"
+			"value" : "/var/lib/snapd/snap/clion/218/bin/ninja/linux/ninja"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -887,7 +887,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/var/lib/snapd/snap/clion/209/bin/cmake/linux/share/cmake-3.23"
+			"value" : "/var/lib/snapd/snap/clion/218/bin/cmake/linux/share/cmake-3.24"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1126,18 +1126,6 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "SFML-2.5.1_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for SFML-2.5.1."
-				}
-			],
-			"type" : "PATH",
-			"value" : "SFML-2.5.1_DIR-NOTFOUND"
-		},
-		{
 			"name" : "SFML_DIR",
 			"properties" : 
 			[
@@ -1160,6 +1148,18 @@
 			],
 			"type" : "PATH",
 			"value" : "SFML_DOC_DIR-NOTFOUND"
+		},
+		{
+			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "linker supports push/pop state"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "TRUE"
 		},
 		{
 			"name" : "lab4_BINARY_DIR",
