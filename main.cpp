@@ -1,5 +1,6 @@
 #include <iostream>
 #include "chess.h"
+#include "graphics.h"
 #include <SFML/Graphics.hpp>
 
 int main() {
@@ -10,7 +11,8 @@ int main() {
     font.loadFromFile("../Textures/arial.ttf");
 
     CHESS::Game_Descriptor game;
-    game.setPosition(50.f, 50.f);
+    Game_Board board = Game_Board(game);
+    board.setPosition(50.f, 50.f);
 
     sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
 
@@ -25,7 +27,7 @@ int main() {
                 window.close();
 
             if(event.type == sf::Event::MouseButtonPressed){
-                if(event.mouseButton.button == sf::Mouse::Left){
+                /*if(event.mouseButton.button == sf::Mouse::Left){
                     if((0 <= event.mouseButton.x) && (event.mouseButton.x <= 512) && (0 <= event.mouseButton.y) && (event.mouseButton.y <= 512)){
                         unsigned int buttonPos{(event.mouseButton.x/64) + ((event.mouseButton.y/64) * (8 * (512/window.getSize().y)))};
 
@@ -37,12 +39,12 @@ int main() {
                     else if((517 <= event.mouseButton.x) && (event.mouseButton.x <= 763) && (5 <= event.mouseButton.y) && (event.mouseButton.y <= 45)){
                         chess.restart();
                     }
-                }
+                }*/
             }
         }
 
         window.clear(sf::Color(205, 133, 63));
-        window.draw(game);
+        window.draw(board);
         window.display();
     }
     return 0;

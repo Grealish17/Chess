@@ -5,10 +5,6 @@
 #include <array>
 #include <memory>
 #include <algorithm>
-#include <SFML/Graphics.hpp>
-
-const int FIELD_SIZE = 800;
-const int SQUARE_SIZE = 100;
 
 namespace CHESS{
 
@@ -59,29 +55,28 @@ namespace CHESS{
         std::list<std::string> moves;
     public:
         void addMove(const std::string& move);
-        void readFromFile(std::string file_name);
+        //void readFromFile(std::string file_name);
     };
 
-    class Game_Descriptor : public sf::Drawable, public sf::Transformable{
-    private:
+    class Game_Descriptor{
+    public:
         std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board;
         Game_History history;
         COLOR turn = white;
         STATUS status = NoGame;
         VERDICT verdict = Nothing;
-        sf::Font font;
         void addPiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece);
         void deletePiece(std::pair<int, int> square);
     public:
         explicit Game_Descriptor();
-        explicit Game_Descriptor(std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board, COLOR turn, STATUS status, VERDICT verdict);
+        Game_Descriptor(Game_Descriptor& game);
         void makeMove(std::pair<int, int> square0, std::pair<int, int> square);
         void changePiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece);
+        
         bool CheckCheckmate(COLOR color);
         bool CheckCheck(COLOR color);
         void CheckDeadPosition();
         void CheckThreefoldRepetition();
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     };
 
     class King: public Piece{
@@ -130,25 +125,6 @@ namespace CHESS{
         char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
         std::string getName() override;
-    };
-
-    class PieceTextures{
-    public:
-        static sf::Texture blackKing;
-        static sf::Texture blackQueen;
-        static sf::Texture blackRook;
-        static sf::Texture blackKnight;
-        static sf::Texture blackBishop;
-        static sf::Texture blackPawn;
-
-        static sf::Texture whiteKing;
-        static sf::Texture whiteQueen;
-        static sf::Texture whiteRook;
-        static sf::Texture whiteKnight;
-        static sf::Texture whiteBishop;
-        static sf::Texture whitePawn;
-
-        static sf::Texture loadTexture(const std::string& str);
     };
 
 }
