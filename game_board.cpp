@@ -27,6 +27,15 @@ void Game_Board::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 
     sf::Text text("", font, 50);
     text.setFillColor(sf::Color::White);
+
+    text.setString(CHESS::to_string(game.verdict));
+    text.setPosition(-50.f, -60.f);
+    target.draw(text, states);
+
+    text.setString(CHESS::to_string(game.status));
+    text.setPosition(300.f, -60.f);
+    target.draw(text, states);
+
     std::string letter(" ");
     for (int i = 0; i < 8; i++) {
         letter[0] = 'a' + i;
@@ -105,6 +114,8 @@ void Game_Board::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 
             sf::Sprite piecesprite;
             piecesprite.setTexture(piecetexture);
+            if(selectedPiece.first == i && selectedPiece.second == j)
+                piecesprite.setColor(sf::Color(255, 255, 255, 128));
             piecesprite.setPosition(i * SQUARE_SIZE + 100.f, (7 - j) * SQUARE_SIZE + 100.f);
 
             target.draw(piecesprite);

@@ -14,8 +14,6 @@ int main() {
     Game_Board board = Game_Board(game);
     board.setPosition(50.f, 50.f);
 
-    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
-
     sf::Event event;
 
     while (window.isOpen())

@@ -18,11 +18,12 @@ namespace CHESS{
     enum STATUS{
         GameIsOn,
         NoGame,
-        NewGame,
         WhiteWin,
         BlackWin,
         Draw
     };
+
+    std::string to_string(STATUS status);
 
     enum VERDICT{
         Checkmate,
@@ -30,6 +31,8 @@ namespace CHESS{
         Stalemate,
         Nothing
     };
+
+    std::string to_string(VERDICT verdict);
 
     class Game_Descriptor;
 
@@ -47,7 +50,6 @@ namespace CHESS{
         virtual std::vector<std::pair<int, int>> getAvailableMoves() = 0;
         virtual std::vector<std::pair<int, int>> getAvailableMovesWithoutCheck() = 0;
         virtual std::string getName() = 0;
-        //friend Game_Descriptor;
         //virtual std::string toNotation(std::pair<int, int> square) = 0;//realization
         COLOR get_color();
     };
@@ -67,17 +69,17 @@ namespace CHESS{
         COLOR turn = white;
         STATUS status = NoGame;
         VERDICT verdict = Nothing;
-        void addPiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece);
+        void addPiece(std::pair<int, int> square, Piece& piece);
         void deletePiece(std::pair<int, int> square);
     public:
         explicit Game_Descriptor();
         Game_Descriptor(Game_Descriptor& game);
-        //~Game_Descriptor() = default;
         void makeMove(std::pair<int, int> square0, std::pair<int, int> square);
-        void changePiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece);
+        void changePiece(std::pair<int, int> square, Piece& piece);
         
         bool CheckCheckmate(COLOR color);
         bool CheckCheck(COLOR color);
+        bool CheckStalemate(COLOR color);
     };
 
     class King: public Piece{

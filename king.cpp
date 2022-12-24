@@ -11,14 +11,14 @@ namespace CHESS{
                 if(game.board[position.first + 1][position.second]->get_color() != get_color()){
                     Game_Descriptor test(game);
                     test.board[position.first + 1][position.second] = std::move(test.board[position.first][position.second]);
-                    if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                    if(!test.CheckCheck(test.turn))
                         moves.emplace_back(position.first + 1, position.second);
                 }
             }
             else{
                 Game_Descriptor test(game);
                 test.board[position.first + 1][position.second] = std::move(test.board[position.first][position.second]);
-                if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                if(!test.CheckCheck(test.turn))
                     moves.emplace_back(position.first + 1, position.second);
             }
         }
@@ -28,14 +28,14 @@ namespace CHESS{
                 if(game.board[position.first - 1][position.second]->get_color() != get_color()){
                     Game_Descriptor test(game);
                     test.board[position.first - 1][position.second] = std::move(test.board[position.first][position.second]);
-                    if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                    if(!test.CheckCheck(test.turn))
                         moves.emplace_back(position.first - 1, position.second);
                 }
             }
             else{
                 Game_Descriptor test(game);
                 test.board[position.first - 1][position.second] = std::move(test.board[position.first][position.second]);
-                if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                if(!test.CheckCheck(test.turn))
                     moves.emplace_back(position.first - 1, position.second);
             }
         }
@@ -45,14 +45,14 @@ namespace CHESS{
                 if(game.board[position.first][position.second + 1]->get_color() != get_color()){
                     Game_Descriptor test(game);
                     test.board[position.first][position.second + 1] = std::move(test.board[position.first][position.second]);
-                    if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                    if(!test.CheckCheck(test.turn))
                         moves.emplace_back(position.first, position.second + 1);
                 }
             }
             else{
                 Game_Descriptor test(game);
                 test.board[position.first][position.second + 1] = std::move(test.board[position.first][position.second]);
-                if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                if(!test.CheckCheck(test.turn))
                     moves.emplace_back(position.first, position.second + 1);
             }
         }
@@ -62,14 +62,14 @@ namespace CHESS{
                 if(game.board[position.first][position.second - 1]->get_color() != get_color()){
                     Game_Descriptor test(game);
                     test.board[position.first][position.second - 1] = std::move(test.board[position.first][position.second]);
-                    if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                    if(!test.CheckCheck(test.turn))
                         moves.emplace_back(position.first, position.second - 1);
                 }
             }
             else{
                 Game_Descriptor test(game);
                 test.board[position.first][position.second - 1] = std::move(test.board[position.first][position.second]);
-                if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                if(!test.CheckCheck(test.turn))
                     moves.emplace_back(position.first, position.second - 1);
             }
         }
@@ -79,14 +79,14 @@ namespace CHESS{
                 if(game.board[position.first + 1][position.second + 1]->get_color() != get_color()){
                     Game_Descriptor test(game);
                     test.board[position.first + 1][position.second + 1] = std::move(test.board[position.first][position.second]);
-                    if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                    if(!test.CheckCheck(test.turn))
                         moves.emplace_back(position.first + 1, position.second + 1);
                 }
             }
             else{
                 Game_Descriptor test(game);
                 test.board[position.first + 1][position.second + 1] = std::move(test.board[position.first][position.second]);
-                if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                if(!test.CheckCheck(test.turn))
                     moves.emplace_back(position.first + 1, position.second + 1);
             }
         }
@@ -96,14 +96,14 @@ namespace CHESS{
                 if(game.board[position.first - 1][position.second + 1]->get_color() != get_color()){
                     Game_Descriptor test(game);
                     test.board[position.first - 1][position.second + 1] = std::move(test.board[position.first][position.second]);
-                    if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                    if(!test.CheckCheck(test.turn))
                         moves.emplace_back(position.first - 1, position.second + 1);
                 }
             }
             else{
                 Game_Descriptor test(game);
                 test.board[position.first - 1][position.second + 1] = std::move(test.board[position.first][position.second]);
-                if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                if(!test.CheckCheck(test.turn))
                     moves.emplace_back(position.first - 1, position.second + 1);
             }
         }
@@ -113,14 +113,14 @@ namespace CHESS{
                 if(game.board[position.first + 1][position.second - 1]->get_color() != get_color()){
                     Game_Descriptor test(game);
                     test.board[position.first + 1][position.second - 1] = std::move(test.board[position.first][position.second]);
-                    if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                    if(!test.CheckCheck(test.turn))
                         moves.emplace_back(position.first + 1, position.second - 1);
                 }
             }
             else{
                 Game_Descriptor test(game);
                 test.board[position.first + 1][position.second - 1] = std::move(test.board[position.first][position.second]);
-                if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                if(!test.CheckCheck(test.turn))
                     moves.emplace_back(position.first + 1, position.second - 1);
             }
         }
@@ -130,14 +130,14 @@ namespace CHESS{
                 if(game.board[position.first - 1][position.second - 1]->get_color() != get_color()){
                     Game_Descriptor test(game);
                     test.board[position.first - 1][position.second - 1] = std::move(test.board[position.first][position.second]);
-                    if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                    if(!test.CheckCheck(test.turn))
                         moves.emplace_back(position.first - 1, position.second - 1);
                 }
             }
             else{
                 Game_Descriptor test(game);
                 test.board[position.first - 1][position.second - 1] = std::move(test.board[position.first][position.second]);
-                if(!test.CheckCheck(test.turn) && !test.CheckCheckmate(test.turn))
+                if(!test.CheckCheck(test.turn))
                     moves.emplace_back(position.first - 1, position.second - 1);
             }
         }

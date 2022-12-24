@@ -191,15 +191,105 @@ namespace CHESS{
             board[square.first][square.second] = std::move(board[square0.first][square0.second]);
             board[square.first][square.second]->setPosition(square);
             inverse(turn);
+            if(this->CheckCheckmate(turn)){
+                verdict = Checkmate;
+                if(turn == white)
+                    status = BlackWin;
+                else
+                    status = WhiteWin;
+            }
+            else if(this->CheckCheck(turn)){
+                verdict = Check;
+            }
+            else if(this->CheckStalemate(turn)){
+                verdict = Stalemate;
+                status = Draw;
+            }
+            else{
+                verdict = Nothing;
+                status = GameIsOn;
+            }
+            if(board[square.first][square.second]->getShortName() == 'p' && square.second == 0){
+                std::pair<int, int> pq = {square.first, square.second};
+                std::unique_ptr<Queen> pQ = std::make_unique<Queen>(Queen(black, *this, pq));
+                changePiece(square, pQ);
+            }
+            else if(board[square.first][square.second]->getShortName() == 'P' && square.second == 7){
+
+            }
         }
     }
 
-    void Game_Descriptor::addPiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece){
+    void Game_Descriptor::addPiece(std::pair<int, int> square, Piece& piece){
         if(board[square.first][square.second] != nullptr){
             throw std::invalid_argument("Busy square");
         }
         else{
-            board[square.first][square.second] = std::move(piece);
+            char name = piece.getShortName();
+            switch (name)
+            {
+                case 'K': {
+                    board[square.first][square.second] = std::make_unique<King>(piece);
+                    break;
+                }
+                case 'Q': {
+                    std::pair<int, int> pQ = {i, j};
+                    board[i][j] = std::make_unique<Queen>(Queen(white, *this, pQ));
+                    break;
+                }
+                case 'R': {
+                    std::pair<int, int> pR1 = {i, j};
+                    board[i][j] = std::make_unique<Rook>(Rook(white, *this, pR1));
+                    break;
+                }
+                case 'B': {
+                    std::pair<int, int> pB1 = {i, j};
+                    board[i][j] = std::make_unique<Bishop>(Bishop(white, *this, pB1));
+                    break;
+                }
+                case 'N': {
+                    std::pair<int, int> pN1 = {i, j};
+                    board[i][j] = std::make_unique<Knight>(Knight(white, *this, pN1));
+                    break;
+                }
+                case 'P': {
+                    std::pair<int, int> pP1 = {i, j};
+                    board[i][j] = std::make_unique<Pawn>(Pawn(white, *this, pP1));
+                    break;
+                }
+                case 'k': {
+                    std::pair<int, int> pk = {i, j};
+                    board[i][j] = std::make_unique<King>(King(black, *this, pk));
+                    break;
+                }
+                case 'q': {
+                    std::pair<int, int> pq = {i, j};
+                    board[i][j] = std::make_unique<Queen>(Queen(black, *this, pq));
+                    break;
+                }
+                case 'r': {
+                    std::pair<int, int> pr1 = {i, j};
+                    board[i][j] = std::make_unique<Rook>(Rook(black, *this, pr1));
+                    break;
+                }
+                case 'b': {
+                    std::pair<int, int> pb1 = {i, j};
+                    board[i][j] = std::make_unique<Bishop>(Bishop(black, *this, pb1));
+                    break;
+                }
+                case 'n': {
+                    std::pair<int, int> pn1 = {i, j};
+                    board[i][j] = std::make_unique<Knight>(Knight(black, *this, pn1));
+                    break;
+                }
+                case 'p': {
+                    std::pair<int, int> pp1 = {i, j};
+                    board[i][j] = std::make_unique<Pawn>(Pawn(black, *this, pp1));
+                    break;
+                }
+                default:
+                    break;
+            }
         }
     }
 
@@ -212,7 +302,7 @@ namespace CHESS{
         }
     }
 
-    void Game_Descriptor::changePiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece){
+    void Game_Descriptor::changePiece(std::pair<int, int> square, Piece& piece){
         this->deletePiece(square);
         this->addPiece(square, piece);
     }
@@ -272,7 +362,110 @@ namespace CHESS{
         return false;
     }
     bool Game_Descriptor::CheckCheckmate(COLOR color){
+        if(this->CheckCheck(color)){
+            Game_Descriptor test(*this);
+            if(color == white){
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
+                        if(test.board[i][j] != nullptr){
+                            if(test.board[i][j]->get_color() == white){
+                                std::vector<std::pair<int, int>> moves = test.board[i][j]->getAvailableMoves();
+                                for(std::pair<int, int>& move: moves){
+                                    test.board[move.first][move.second] = std::move(test.board[i][j]);
+                                    if(!test.CheckCheck(color))
+                                    {
+                                        std::cout << move.first << " " << move.second << " <- " << i << " " << j << std::endl;
+                                        return false;
+                                    }
+                                    else
+                                        test.board[i][j] = std::move(test.board[move.first][move.second]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
+                        if(test.board[i][j] != nullptr){
+                            if(test.board[i][j]->get_color() == black){
+                                std::vector<std::pair<int, int>> moves = test.board[i][j]->getAvailableMoves();
+                                for(std::pair<int, int>& move: moves){
+                                    test.board[move.first][move.second] = std::move(test.board[i][j]);
+                                    if(!test.CheckCheck(color))
+                                    {
+                                        std::cout << move.first << " " << move.second << " <- " << i << " " << j << std::endl;
+                                        return false;
+                                    }
+                                    else
+                                        test.board[i][j] = std::move(test.board[move.first][move.second]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
         return false;
+    }
+
+    bool Game_Descriptor::CheckStalemate(COLOR color){
+        if(color == white){
+            std::pair<int, int> pos;
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if(board[i][j] != nullptr){
+                        if(board[i][j]->get_color() == white){
+                            std::vector<std::pair<int, int>> moves = board[i][j]->getAvailableMovesWithoutCheck();
+                            if(!moves.empty())
+                                return false;
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if(board[i][j] != nullptr){
+                        if(board[i][j]->get_color() == black){
+                            std::vector<std::pair<int, int>> moves = board[i][j]->getAvailableMovesWithoutCheck();
+                            if(!moves.empty())
+                                return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    std::string to_string(STATUS status){
+        if(status == GameIsOn)
+            return "Game Is On";
+        else if(status == NoGame)
+            return "No Game";
+        else if(status == WhiteWin)
+            return "White Win";
+        else if(status == BlackWin)
+            return "Black Win";
+        else if(status == Draw)
+            return "Draw";
+        else
+            return "None";
+    }
+
+    std::string to_string(VERDICT verdict){
+        if(verdict == Checkmate)
+            return "Checkmate";
+        else if(verdict == Check)
+            return "Check";
+        else if(verdict == Stalemate)
+            return "Stalemate";
+        else
+            return "Nothing";
     }
 
     COLOR& inverse(COLOR& color){
