@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 #include <iostream>
 #include <list>
 #include <vector>
@@ -13,6 +13,8 @@ namespace CHESS{
         white
     };
 
+    COLOR& inverse(COLOR& color);
+
     enum STATUS{
         GameIsOn,
         NoGame,
@@ -26,24 +28,24 @@ namespace CHESS{
         Checkmate,
         Check,
         Stalemate,
-        ThreefoldRepetition,
-        DeadPosition,
         Nothing
     };
 
-    //class Game_Descriptor;
+    class Game_Descriptor;
 
     class Piece{
     protected:
         std::pair<int, int> position;
-        const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& board;
+        Game_Descriptor& game;
     private:
         COLOR color;
     public:
-        explicit Piece(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        explicit Piece(COLOR color, Game_Descriptor& game, std::pair<int, int>& square0);
         bool checkMove(std::pair<int, int> square);
+        void setPosition(std::pair<int, int> square);
         virtual char getShortName() = 0;
         virtual std::vector<std::pair<int, int>> getAvailableMoves() = 0;
+        virtual std::vector<std::pair<int, int>> getAvailableMovesWithoutCheck() = 0;
         virtual std::string getName() = 0;
         //friend Game_Descriptor;
         //virtual std::string toNotation(std::pair<int, int> square) = 0;//realization
@@ -70,60 +72,65 @@ namespace CHESS{
     public:
         explicit Game_Descriptor();
         Game_Descriptor(Game_Descriptor& game);
+        //~Game_Descriptor() = default;
         void makeMove(std::pair<int, int> square0, std::pair<int, int> square);
         void changePiece(std::pair<int, int> square, std::unique_ptr<Piece>& piece);
         
         bool CheckCheckmate(COLOR color);
         bool CheckCheck(COLOR color);
-        void CheckDeadPosition();
-        void CheckThreefoldRepetition();
     };
 
     class King: public Piece{
     public:
-        explicit King(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        explicit King(COLOR color, Game_Descriptor& game, std::pair<int, int>& square0);
         char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::vector<std::pair<int, int>> getAvailableMovesWithoutCheck() override;
         std::string getName() override;
     };
 
     class Queen: public Piece{
     public:
-        explicit Queen(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        explicit Queen(COLOR color, Game_Descriptor& game, std::pair<int, int>& square0);
         char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::vector<std::pair<int, int>> getAvailableMovesWithoutCheck() override;
         std::string getName() override;
     };
 
     class Rook: public Piece{
     public:
-        explicit Rook(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        explicit Rook(COLOR color, Game_Descriptor& game, std::pair<int, int>& square0);
         char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::vector<std::pair<int, int>> getAvailableMovesWithoutCheck() override;
         std::string getName() override;
     };
 
     class Bishop: public Piece{
     public:
-        explicit Bishop(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        explicit Bishop(COLOR color, Game_Descriptor& game, std::pair<int, int>& square0);
         char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::vector<std::pair<int, int>> getAvailableMovesWithoutCheck() override;
         std::string getName() override;
     };
 
     class Knight: public Piece{
     public:
-        explicit Knight(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        explicit Knight(COLOR color, Game_Descriptor& game, std::pair<int, int>& square0);
         char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::vector<std::pair<int, int>> getAvailableMovesWithoutCheck() override;
         std::string getName() override;
     };
 
     class Pawn: public Piece{
     public:
-        explicit Pawn(COLOR color, std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& chessboard, std::pair<int, int>& square0);
+        explicit Pawn(COLOR color, Game_Descriptor& game, std::pair<int, int>& square0);
         char getShortName() override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
+        std::vector<std::pair<int, int>> getAvailableMovesWithoutCheck() override;
         std::string getName() override;
     };
 

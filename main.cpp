@@ -20,26 +20,33 @@ int main() {
 
     while (window.isOpen())
     {
-
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();
 
             if(event.type == sf::Event::MouseButtonPressed){
-                /*if(event.mouseButton.button == sf::Mouse::Left){
-                    if((0 <= event.mouseButton.x) && (event.mouseButton.x <= 512) && (0 <= event.mouseButton.y) && (event.mouseButton.y <= 512)){
-                        unsigned int buttonPos{(event.mouseButton.x/64) + ((event.mouseButton.y/64) * (8 * (512/window.getSize().y)))};
+                if(event.mouseButton.button == sf::Mouse::Left){
+                    if((100 <= event.mouseButton.x) && (event.mouseButton.x <= 900) && (100 <= event.mouseButton.y) && (event.mouseButton.y <= 900)){
+                        int ButtonPosX = event.mouseButton.x/100;
+                        int ButtonPosY = event.mouseButton.y/100;
 
-                        if(!chess.getSelected())
-                            chess.selectPiece(buttonPos);
-                        else
-                            chess.moveSelected(buttonPos);
+                        --ButtonPosX;
+                        --ButtonPosY;
+
+                        ButtonPosY = (7 - ButtonPosY);
+
+                        if(!board.getSelected()){
+                            board.selectPiece(ButtonPosX, ButtonPosY);
+                        }
+                        else{
+                            if(ButtonPosX == board.selectedPiece.first && ButtonPosY == board.selectedPiece.second)
+                                board.resetSelect();
+                            else
+                                board.moveSelected(ButtonPosX, ButtonPosY);
+                        }
                     }
-                    else if((517 <= event.mouseButton.x) && (event.mouseButton.x <= 763) && (5 <= event.mouseButton.y) && (event.mouseButton.y <= 45)){
-                        chess.restart();
-                    }
-                }*/
+                }
             }
         }
 

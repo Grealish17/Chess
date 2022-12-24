@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 #include <iostream>
 #include <list>
 #include <vector>
@@ -14,9 +14,16 @@ class Game_Board : public sf::Drawable, public sf::Transformable{
 private:
     CHESS::Game_Descriptor& game;
     sf::Font font;
+    bool selected = false;
+
 public:
     explicit Game_Board(CHESS::Game_Descriptor& game);
+    bool getSelected() const;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    bool selectPiece(int pos_x, int pos_y);
+    void resetSelect();
+    bool moveSelected(int pos_x, int pos_y);
+    std::pair<int, int> selectedPiece = {-1, -1};
 };
 
 class PieceTextures{

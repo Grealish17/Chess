@@ -2,7 +2,7 @@
 #include "graphics.h"
 #include <SFML/Graphics.hpp>
 
-    Game_Board::Game_Board(CHESS::Game_Descriptor& game): game(game){
+    Game_Board::Game_Board(CHESS::Game_Descriptor& game): game(game), selected(false){
     font.loadFromFile("../Textures/arial.ttf");
 }
 
@@ -105,10 +105,40 @@ void Game_Board::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 
             sf::Sprite piecesprite;
             piecesprite.setTexture(piecetexture);
-            piecesprite.setPosition((7 - i) * SQUARE_SIZE + 100.f, (7 - j) * SQUARE_SIZE + 100.f);
+            piecesprite.setPosition(i * SQUARE_SIZE + 100.f, (7 - j) * SQUARE_SIZE + 100.f);
 
             target.draw(piecesprite);
 
         }
     }
+}
+
+bool Game_Board::getSelected() const{
+    return selected;
+}
+
+void Game_Board::resetSelect(){
+    selected = false;
+    selectedPiece = {-1, -1};
+}
+
+bool Game_Board::selectPiece(int pos_x, int pos_y){
+    if(game.board[pos_x][pos_y] != nullptr){
+        if(game.board[pos_x][pos_y]->get_color() == game.turn){
+            selectedPiece = {pos_x, pos_y};
+            selected = true;
+        }
+    }
+    return selected;
+}
+
+bool Game_Board::moveSelected(int pos_x, int pos_y){
+    try{
+        game.makeMove(selectedPiece, {pos_x, pos_y});
+        selected = false;
+    }
+    catch(std::invalid_argument& exception){
+        return false;
+    }
+    return true;
 }
