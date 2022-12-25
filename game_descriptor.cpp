@@ -210,81 +210,79 @@ namespace CHESS{
                 status = GameIsOn;
             }
             if(board[square.first][square.second]->getShortName() == 'p' && square.second == 0){
-                std::pair<int, int> pq = {square.first, square.second};
-                std::unique_ptr<Queen> pQ = std::make_unique<Queen>(Queen(black, *this, pq));
-                changePiece(square, pQ);
+                changePiece(square, 'q');
             }
             else if(board[square.first][square.second]->getShortName() == 'P' && square.second == 7){
-
+                changePiece(square, 'Q');
             }
         }
     }
 
-    void Game_Descriptor::addPiece(std::pair<int, int> square, Piece& piece){
+    void Game_Descriptor::addPiece(std::pair<int, int> square, char shortname){
         if(board[square.first][square.second] != nullptr){
             throw std::invalid_argument("Busy square");
         }
         else{
-            char name = piece.getShortName();
-            switch (name)
+            switch (shortname)
             {
                 case 'K': {
-                    board[square.first][square.second] = std::make_unique<King>(piece);
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<King>(King(white, *this, pK));
                     break;
                 }
                 case 'Q': {
-                    std::pair<int, int> pQ = {i, j};
-                    board[i][j] = std::make_unique<Queen>(Queen(white, *this, pQ));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<Queen>(Queen(white, *this, pK));
                     break;
                 }
                 case 'R': {
-                    std::pair<int, int> pR1 = {i, j};
-                    board[i][j] = std::make_unique<Rook>(Rook(white, *this, pR1));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<Rook>(Rook(white, *this, pK));
                     break;
                 }
                 case 'B': {
-                    std::pair<int, int> pB1 = {i, j};
-                    board[i][j] = std::make_unique<Bishop>(Bishop(white, *this, pB1));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<Bishop>(Bishop(white, *this, pK));
                     break;
                 }
                 case 'N': {
-                    std::pair<int, int> pN1 = {i, j};
-                    board[i][j] = std::make_unique<Knight>(Knight(white, *this, pN1));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<Knight>(Knight(white, *this, pK));
                     break;
                 }
                 case 'P': {
-                    std::pair<int, int> pP1 = {i, j};
-                    board[i][j] = std::make_unique<Pawn>(Pawn(white, *this, pP1));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<Pawn>(Pawn(white, *this, pK));
                     break;
                 }
                 case 'k': {
-                    std::pair<int, int> pk = {i, j};
-                    board[i][j] = std::make_unique<King>(King(black, *this, pk));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<King>(King(black, *this, pK));
                     break;
                 }
                 case 'q': {
-                    std::pair<int, int> pq = {i, j};
-                    board[i][j] = std::make_unique<Queen>(Queen(black, *this, pq));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<Queen>(Queen(black, *this, pK));
                     break;
                 }
                 case 'r': {
-                    std::pair<int, int> pr1 = {i, j};
-                    board[i][j] = std::make_unique<Rook>(Rook(black, *this, pr1));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<Rook>(Rook(black, *this, pK));
                     break;
                 }
                 case 'b': {
-                    std::pair<int, int> pb1 = {i, j};
-                    board[i][j] = std::make_unique<Bishop>(Bishop(black, *this, pb1));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<Bishop>(Bishop(black, *this, pK));
                     break;
                 }
                 case 'n': {
-                    std::pair<int, int> pn1 = {i, j};
-                    board[i][j] = std::make_unique<Knight>(Knight(black, *this, pn1));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<Knight>(Knight(black, *this, pK));
                     break;
                 }
                 case 'p': {
-                    std::pair<int, int> pp1 = {i, j};
-                    board[i][j] = std::make_unique<Pawn>(Pawn(black, *this, pp1));
+                    std::pair<int, int> pK = {square.first, square.first};
+                    board[square.first][square.second] = std::make_unique<Pawn>(Pawn(black, *this, pK));
                     break;
                 }
                 default:
@@ -302,9 +300,9 @@ namespace CHESS{
         }
     }
 
-    void Game_Descriptor::changePiece(std::pair<int, int> square, Piece& piece){
+    void Game_Descriptor::changePiece(std::pair<int, int> square, char shortname){
         this->deletePiece(square);
-        this->addPiece(square, piece);
+        this->addPiece(square, shortname);
     }
 
     bool Game_Descriptor::CheckCheck(COLOR color){
@@ -373,10 +371,7 @@ namespace CHESS{
                                 for(std::pair<int, int>& move: moves){
                                     test.board[move.first][move.second] = std::move(test.board[i][j]);
                                     if(!test.CheckCheck(color))
-                                    {
-                                        std::cout << move.first << " " << move.second << " <- " << i << " " << j << std::endl;
                                         return false;
-                                    }
                                     else
                                         test.board[i][j] = std::move(test.board[move.first][move.second]);
                                 }
@@ -394,10 +389,7 @@ namespace CHESS{
                                 for(std::pair<int, int>& move: moves){
                                     test.board[move.first][move.second] = std::move(test.board[i][j]);
                                     if(!test.CheckCheck(color))
-                                    {
-                                        std::cout << move.first << " " << move.second << " <- " << i << " " << j << std::endl;
                                         return false;
-                                    }
                                     else
                                         test.board[i][j] = std::move(test.board[move.first][move.second]);
                                 }

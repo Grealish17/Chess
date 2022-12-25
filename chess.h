@@ -69,13 +69,13 @@ namespace CHESS{
         COLOR turn = white;
         STATUS status = NoGame;
         VERDICT verdict = Nothing;
-        void addPiece(std::pair<int, int> square, Piece& piece);
+        void addPiece(std::pair<int, int> square, char shortname);
         void deletePiece(std::pair<int, int> square);
     public:
         explicit Game_Descriptor();
         Game_Descriptor(Game_Descriptor& game);
         void makeMove(std::pair<int, int> square0, std::pair<int, int> square);
-        void changePiece(std::pair<int, int> square, Piece& piece);
+        void changePiece(std::pair<int, int> square, char shortname);
         
         bool CheckCheckmate(COLOR color);
         bool CheckCheck(COLOR color);
