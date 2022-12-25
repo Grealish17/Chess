@@ -34,6 +34,8 @@ namespace CHESS{
 
     std::string to_string(VERDICT verdict);
 
+    std::string to_string(std::pair<int, int> square);
+
     class Game_Descriptor;
 
     class Piece{
@@ -50,15 +52,16 @@ namespace CHESS{
         virtual std::vector<std::pair<int, int>> getAvailableMoves() = 0;
         virtual std::vector<std::pair<int, int>> getAvailableMovesWithoutCheck() = 0;
         virtual std::string getName() = 0;
-        //virtual std::string toNotation(std::pair<int, int> square) = 0;//realization
+        virtual std::string toNotation(std::pair<int, int> square);
         COLOR get_color();
     };
 
     class Game_History{
-    private:
+    public:
         std::list<std::string> moves;
     public:
         void addMove(const std::string& move);
+        bool saveToFile(const std::string& file_name);
         //void readFromFile(std::string file_name);
     };
 
@@ -131,6 +134,7 @@ namespace CHESS{
     public:
         explicit Pawn(COLOR color, Game_Descriptor& game, std::pair<int, int>& square0);
         char getShortName() override;
+        std::string toNotation(std::pair<int, int> square) override;
         std::vector<std::pair<int, int>> getAvailableMoves() override;
         std::vector<std::pair<int, int>> getAvailableMovesWithoutCheck() override;
         std::string getName() override;

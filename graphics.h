@@ -17,6 +17,7 @@ private:
     bool selected = false;
 
 public:
+    bool saveButton = false;
     explicit Game_Board(CHESS::Game_Descriptor& game);
     bool getSelected() const;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

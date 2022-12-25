@@ -26,15 +26,39 @@ void Game_Board::draw(sf::RenderTarget& target, sf::RenderStates states) const{
     target.draw(shape, states);
 
     sf::Text text("", font, 50);
-    text.setFillColor(sf::Color::White);
+    text.setFillColor(sf::Color::Black);
 
     text.setString(CHESS::to_string(game.verdict));
     text.setPosition(-50.f, -60.f);
     target.draw(text, states);
 
     text.setString(CHESS::to_string(game.status));
-    text.setPosition(300.f, -60.f);
+    text.setPosition(250.f, -60.f);
     target.draw(text, states);
+
+    text.setString("Save the game");
+    if(saveButton)
+        text.setFillColor(sf::Color::Blue);
+    text.setPosition(550.f, -60.f);
+    target.draw(text, states);
+
+    text.setFillColor(sf::Color::White);
+
+    sf::Text history_text("", font, 30);
+    history_text.setFillColor(sf::Color::Black);
+    int k(0);
+    unsigned adj(0);
+    if(game.history.moves.size() > 40)
+        adj = (game.history.moves.size() - 40)/2 + (game.history.moves.size() - 40)%2;
+    for(std::string& move: game.history.moves){
+        if(k%2 == 0)
+            history_text.setString(std::to_string(k/2 + 1) + " :   " + move);
+        else
+            history_text.setString(move);
+        history_text.setPosition(1050.f + 150.f*(k%2), -50.f + (k/2)*50.f - adj*50.f);
+        target.draw(history_text, states);
+        ++k;
+    }
 
     std::string letter(" ");
     for (int i = 0; i < 8; i++) {

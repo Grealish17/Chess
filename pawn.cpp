@@ -4,6 +4,11 @@ namespace CHESS{
 
     Pawn::Pawn(COLOR color,  Game_Descriptor& game, std::pair<int, int>& square0): Piece(color, game, square0){}
 
+    std::string Pawn::toNotation(std::pair<int, int> square){
+        std::string s = to_string(square);
+        return s;
+    }
+
     std::vector<std::pair<int, int>> Pawn::getAvailableMoves() {
         std::vector<std::pair<int, int>> moves;
         if(this->get_color() == white)

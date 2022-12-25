@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Chess");
+    sf::RenderWindow window(sf::VideoMode(1500, 1000), "Chess");
     //window.setFramerateLimit(60);
 
     sf::Font font;
@@ -22,6 +22,13 @@ int main() {
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+
+            if((603 <= event.mouseMove.x) && (event.mouseMove.x <= 933) && (3 <= event.mouseMove.y) && (event.mouseMove.y <= 43)){
+                board.saveButton = true;
+            }
+            else{
+                board.saveButton = false;
+            }
 
             if(event.type == sf::Event::MouseButtonPressed){
                 if(event.mouseButton.button == sf::Mouse::Left){
@@ -43,6 +50,9 @@ int main() {
                             else
                                 board.moveSelected(ButtonPosX, ButtonPosY);
                         }
+                    }
+                    else if((603 <= event.mouseButton.x) && (event.mouseButton.x <= 933) && (3 <= event.mouseButton.y) && (event.mouseButton.y <= 43)){
+                        game.history.saveToFile("../history.txt");
                     }
                 }
             }

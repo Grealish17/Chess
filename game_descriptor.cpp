@@ -191,6 +191,7 @@ namespace CHESS{
             board[square.first][square.second] = std::move(board[square0.first][square0.second]);
             board[square.first][square.second]->setPosition(square);
             inverse(turn);
+            history.addMove(board[square.first][square.second]->toNotation(square));
             if(this->CheckCheckmate(turn)){
                 verdict = Checkmate;
                 if(turn == white)

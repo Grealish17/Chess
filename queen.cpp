@@ -21,6 +21,13 @@ namespace CHESS{
         position = square;
     }
 
+    std::string Piece::toNotation(std::pair<int, int> square){
+        std::string s = " ";
+        s[0] = toupper(this->getShortName());
+        s += to_string(square);
+        return s;
+    }
+
     Queen::Queen(COLOR color, Game_Descriptor& game, std::pair<int, int>& square0): Piece(color, game, square0){}
 
     std::vector<std::pair<int, int>> Queen::getAvailableMoves(){
