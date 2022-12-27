@@ -188,10 +188,30 @@ namespace CHESS{
             throw std::invalid_argument("Not available moves");
         }
         else{
-            board[square.first][square.second] = std::move(board[square0.first][square0.second]);
-            board[square.first][square.second]->setPosition(square);
-            inverse(turn);
-            history.addMove(board[square.first][square.second]->toNotation(square));
+            if(square.first == 6 && (square.second == 0 || square.second == 7)&& square0.first == 4 && (square0.second == 0 || square0.second == 7) && (board[square0.first][square0.second]->getShortName()=='K' || board[square0.first][square0.second]->getShortName()=='k')){
+                board[5][square0.second] = std::move(board[7][square.second]);
+                board[square.first][square.second] = std::move(board[square0.first][square0.second]);
+                inverse(turn);
+                history.addMove("0-0");
+            }
+            else if(square.first == 2 && (square.second == 0 || square.second == 7) && square0.first == 4 && (square0.second == 0 || square0.second == 7) && (board[square0.first][square0.second]->getShortName()=='K' || board[square0.first][square0.second]->getShortName()=='k')){
+                board[3][square0.second] = std::move(board[0][square.second]);
+                board[square.first][square.second] = std::move(board[square0.first][square0.second]);
+                inverse(turn);
+                history.addMove("0-0-0");
+            }
+            else{
+                board[square.first][square.second] = std::move(board[square0.first][square0.second]);
+                board[square.first][square.second]->setPosition(square);
+                inverse(turn);
+                history.addMove(board[square.first][square.second]->toNotation(square));
+            }
+
+            if(board[square.first][square.second]->getShortName() == 'R' || board[square.first][square.second]->getShortName() == 'K')
+                castlingWhiteIsAvailable = false;
+            if(board[square.first][square.second]->getShortName() == 'r' || board[square.first][square.second]->getShortName() == 'k')
+                castlingBlackIsAvailable = false;
+
             if(this->CheckCheckmate(turn)){
                 verdict = Checkmate;
                 if(turn == white)
@@ -411,7 +431,7 @@ namespace CHESS{
                 for (int j = 0; j < 8; j++) {
                     if(board[i][j] != nullptr){
                         if(board[i][j]->get_color() == white){
-                            std::vector<std::pair<int, int>> moves = board[i][j]->getAvailableMovesWithoutCheck();
+                            std::vector<std::pair<int, int>> moves = board[i][j]->getAvailableMoves();
                             if(!moves.empty())
                                 return false;
                         }
@@ -424,7 +444,7 @@ namespace CHESS{
                 for (int j = 0; j < 8; j++) {
                     if(board[i][j] != nullptr){
                         if(board[i][j]->get_color() == black){
-                            std::vector<std::pair<int, int>> moves = board[i][j]->getAvailableMovesWithoutCheck();
+                            std::vector<std::pair<int, int>> moves = board[i][j]->getAvailableMoves();
                             if(!moves.empty())
                                 return false;
                         }

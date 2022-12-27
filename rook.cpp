@@ -6,7 +6,7 @@ namespace CHESS{
 
     std::vector<std::pair<int, int>> Rook::getAvailableMoves() {
         std::vector<std::pair<int, int>> moves;
-        for(int i(1); i<(8-position.first); ++i){
+        for(int i(1); i<=(7-position.first); ++i){
             if(game.board[position.first + i][position.second] != nullptr){
                 if(game.board[position.first + i][position.second]->get_color() != get_color()){
                     Game_Descriptor test(game);
@@ -42,7 +42,7 @@ namespace CHESS{
             }
         }
 
-        for(int i(1); i<(8-position.second); ++i){
+        for(int i(1); i<=(7-position.second); ++i){
             if(game.board[position.first ][position.second + i] != nullptr){
                 if(game.board[position.first][position.second + i]->get_color() != get_color()){
                     Game_Descriptor test(game);
@@ -82,7 +82,7 @@ namespace CHESS{
 
     std::vector<std::pair<int, int>> Rook::getAvailableMovesWithoutCheck(){
         std::vector<std::pair<int, int>> moves;
-        for(int i(1); i<(8-position.first); ++i){
+        for(int i(1); i<=(7-position.first); ++i){
             if(game.board[position.first + i][position.second] != nullptr){
                 if(game.board[position.first + i][position.second]->get_color() != get_color()){
                     moves.emplace_back(position.first + i, position.second);
@@ -106,7 +106,7 @@ namespace CHESS{
             }
         }
 
-        for(int i(1); i<(8-position.second); ++i){
+        for(int i(1); i<=(7-position.second); ++i){
             if(game.board[position.first ][position.second + i] != nullptr){
                 if(game.board[position.first][position.second + i]->get_color() != get_color()){
                     moves.emplace_back(position.first, position.second + i);

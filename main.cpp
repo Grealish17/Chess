@@ -32,7 +32,7 @@ int main() {
 
             if(event.type == sf::Event::MouseButtonPressed){
                 if(event.mouseButton.button == sf::Mouse::Left){
-                    if((100 <= event.mouseButton.x) && (event.mouseButton.x <= 900) && (100 <= event.mouseButton.y) && (event.mouseButton.y <= 900)){
+                    if(game.verdict != CHESS::Checkmate && game.verdict != CHESS::Stalemate && (100 <= event.mouseButton.x) && (event.mouseButton.x <= 900) && (100 <= event.mouseButton.y) && (event.mouseButton.y <= 900)){
                         int ButtonPosX = event.mouseButton.x/100;
                         int ButtonPosY = event.mouseButton.y/100;
 

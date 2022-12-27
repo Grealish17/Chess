@@ -7,7 +7,7 @@ namespace CHESS{
     std::vector<std::pair<int, int>> Bishop::getAvailableMoves() {
         std::vector<std::pair<int, int>> moves;
 
-        for(int i(1); i<(8-std::max(position.first, position.second)); ++i){
+        for(int i(1); i<=(7-std::max(position.first, position.second)); ++i){
             if(game.board[position.first + i][position.second + i] != nullptr){
                 if(game.board[position.first + i][position.second + i]->get_color() != get_color()){
                     Game_Descriptor test(game);
@@ -43,7 +43,7 @@ namespace CHESS{
             }
         }
 
-        for(int i(1); i<(std::min(8-position.second, position.first)); ++i){
+        for(int i(1); i<=(std::min(7-position.second, position.first)); ++i){
             if(game.board[position.first - i][position.second + i] != nullptr){
                 if(game.board[position.first - i][position.second + i]->get_color() != get_color()){
                     Game_Descriptor test(game);
@@ -61,7 +61,7 @@ namespace CHESS{
             }
         }
 
-        for(int i(1); i<(std::min(8-position.first, position.second)); ++i){
+        for(int i(1); i<=(std::min(7-position.first, position.second)); ++i){
             if(game.board[position.first + i][position.second - i] != nullptr){
                 if(game.board[position.first + i][position.second - i]->get_color() != get_color()){
                     Game_Descriptor test(game);
@@ -85,7 +85,7 @@ namespace CHESS{
     std::vector<std::pair<int, int>> Bishop::getAvailableMovesWithoutCheck(){
         std::vector<std::pair<int, int>> moves;
 
-        for(int i(1); i<(8-std::max(position.first, position.second)); ++i){
+        for(int i(1); i<=(7-std::max(position.first, position.second)); ++i){
             if(game.board[position.first + i][position.second + i] != nullptr){
                 if(game.board[position.first + i][position.second + i]->get_color() != get_color()){
                     moves.emplace_back(position.first + i, position.second + i);
@@ -109,7 +109,7 @@ namespace CHESS{
             }
         }
 
-        for(int i(1); i<(std::min(8-position.second, position.first)); ++i){
+        for(int i(1); i<=(std::min(7-position.second, position.first)); ++i){
             if(game.board[position.first - i][position.second + i] != nullptr){
                 if(game.board[position.first - i][position.second + i]->get_color() != get_color()){
                     moves.emplace_back(position.first - i, position.second + i);
@@ -121,7 +121,7 @@ namespace CHESS{
             }
         }
 
-        for(int i(1); i<(std::min(8-position.first, position.second)); ++i){
+        for(int i(1); i<=(std::min(7-position.first, position.second)); ++i){
             if(game.board[position.first + i][position.second - i] != nullptr){
                 if(game.board[position.first + i][position.second - i]->get_color() != get_color()){
                     moves.emplace_back(position.first + i, position.second - i);

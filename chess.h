@@ -62,7 +62,6 @@ namespace CHESS{
     public:
         void addMove(const std::string& move);
         bool saveToFile(const std::string& file_name);
-        //void readFromFile(std::string file_name);
     };
 
     class Game_Descriptor{
@@ -73,6 +72,8 @@ namespace CHESS{
         STATUS status = NoGame;
         VERDICT verdict = Nothing;
         void addPiece(std::pair<int, int> square, char shortname);
+        bool castlingWhiteIsAvailable = true;
+        bool castlingBlackIsAvailable = true;
         void deletePiece(std::pair<int, int> square);
     public:
         explicit Game_Descriptor();
