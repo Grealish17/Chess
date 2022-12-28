@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['savetofile_0',['saveToFile',['../classCHESS_1_1Game__History.html#a2c400e39f05b5c80750ad6e008bb171c',1,'CHESS::Game_History']]],
-  ['setposition_1',['setPosition',['../classCHESS_1_1Piece.html#a7ca1fdf2fde8ecab58810342a5eb8492',1,'CHESS::Piece']]],
-  ['status_2',['status',['../classCHESS_1_1Game__Descriptor.html#adbaba216ae3ad7f053e23bc404398539',1,'CHESS::Game_Descriptor']]]
+  ['resetselect_0',['resetSelect',['../classGame__Board.html#a218398baa27ca671fb5b3e45b1ca08d5',1,'Game_Board']]],
+  ['rook_1',['Rook',['../classCHESS_1_1Rook.html',1,'CHESS::Rook'],['../classCHESS_1_1Rook.html#a296f6a8c8760bd169c3618600db033a3',1,'CHESS::Rook::Rook()']]]
 ];
